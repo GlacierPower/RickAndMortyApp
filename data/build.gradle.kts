@@ -42,10 +42,25 @@ dependencies {
 
     implementation(project(":domain"))
 
+    //Retrofit
+    implementation (libs.com.squareup.retrofit2.retrofit2)
+    implementation (libs.converter.gson)
+    implementation (libs.logging.interceptor)
+
+    //Room
+    kapt (libs.androidx.room.compiler)
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.androidx.room.ktx)
+
+    // glide for image
+    implementation (libs.glide)
+    kapt (libs.compiler)
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit.v121)
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation(libs.androidx.espresso.core.v361)
 }

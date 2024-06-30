@@ -1,4 +1,4 @@
-package com.glacierpower.data
+package com.glacierpower.data.repositoryImpl
 
 import com.glacierpower.domain.RickAndMortyRepository
 
