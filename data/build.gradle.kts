@@ -1,25 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.googleDaggerHiltAndroid)
+    alias(libs.plugins.library)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 android {
-    namespace = "com.glacierpower.rickandmorty"
+    namespace = "com.glacierpower.data"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.glacierpower.rickandmorty"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-    buildFeatures{
-        viewBinding = true
     }
 
     buildTypes {
@@ -38,11 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
 }
 
 dependencies {
-
     //Hilt
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
@@ -50,11 +40,12 @@ dependencies {
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.work.runtime.ktx)
 
-    implementation(libs.androidx.core.ktx.v1101)
-    implementation(libs.androidx.appcompat.v161)
-    implementation(libs.material.v190)
-    implementation(libs.androidx.constraintlayout)
+    implementation(project(":domain"))
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit.v121)
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
