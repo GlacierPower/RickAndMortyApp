@@ -42,19 +42,26 @@ dependencies {
 
     implementation(project(":domain"))
 
+    //Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    //Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+
     //Retrofit
-    implementation (libs.com.squareup.retrofit2.retrofit2)
-    implementation (libs.converter.gson)
-    implementation (libs.logging.interceptor)
+    implementation(libs.com.squareup.retrofit2.retrofit2)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     //Room
-    kapt (libs.androidx.room.compiler)
-    implementation (libs.androidx.room.runtime)
-    implementation (libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
 
     // glide for image
-    implementation (libs.glide)
-    kapt (libs.compiler)
+    implementation(libs.glide)
+    kapt(libs.compiler)
 
 
     implementation(libs.androidx.core.ktx)

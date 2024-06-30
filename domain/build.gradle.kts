@@ -35,6 +35,9 @@ android {
 
 dependencies {
 
+    //Paging
+    implementation (libs.androidx.paging.runtime.ktx)
+
     //Hilt
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
@@ -42,6 +45,7 @@ dependencies {
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.work.runtime.ktx)
 
+    implementation(project(":data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
