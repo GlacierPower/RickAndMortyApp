@@ -1,8 +1,8 @@
 package com.glacierpower.data.di
 
 import android.content.Context
-import com.glacierpower.data.repositoryImpl.RickAndMortyRepositoryImpl
 import com.glacierpower.data.remote.RickAndMortyService
+import com.glacierpower.data.repositoryImpl.RickAndMortyRepositoryImpl
 import com.glacierpower.domain.RickAndMortyRepository
 import dagger.Binds
 import dagger.Module
@@ -28,7 +28,7 @@ abstract class DataModule {
 
     companion object {
 
-        private const val BASE_URL = "https://rickandmortyapi.com/api"
+        private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
         @Provides
         fun provideRickAndMortyService(retrofit: Retrofit): RickAndMortyService {

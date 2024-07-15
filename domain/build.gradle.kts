@@ -45,12 +45,10 @@ dependencies {
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.work.runtime.ktx)
 
-    implementation(project(":data"))
+    implementation(project(":common"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit.v121)
-    androidTestImplementation(libs.androidx.espresso.core.v361)
 }

@@ -1,6 +1,6 @@
-package com.glacierpower.data.utils
+package com.glacierpower.common
 
-enum class GenderState(gender:String) {
+enum class GenderState(val status:String) {
     FEMALE("female"),
     MALE("male"),
     GENDERLESS("genderless"),
