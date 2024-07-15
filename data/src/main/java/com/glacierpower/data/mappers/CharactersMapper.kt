@@ -1,10 +1,10 @@
 package com.glacierpower.data.mappers
 
-import com.glacierpower.data.remote.response.CharacterResponse
-import com.glacierpower.data.remote.response.Info
-import com.glacierpower.data.remote.response.Location
-import com.glacierpower.data.remote.response.Origin
-import com.glacierpower.data.remote.response.Results
+import com.glacierpower.common.CharacterData
+import com.glacierpower.common.CharacterResponse
+import com.glacierpower.common.Info
+import com.glacierpower.common.Location
+import com.glacierpower.common.Origin
 import com.glacierpower.domain.model.CharacterModel
 import com.glacierpower.domain.model.InfoModel
 import com.glacierpower.domain.model.LocationModel
@@ -22,16 +22,17 @@ fun CharacterResponse.toModel(): CharacterModel {
 
 fun Info.toModel(): InfoModel {
     return InfoModel(
-        count, pages, next, prev
+        count, next, pages, prev
     )
 }
 
-fun Results.toModel(): ResultsModel {
+fun CharacterData.toModel(): ResultsModel {
     return ResultsModel(
         id,
         name,
         status,
         species,
+        gender,
         type,
         origin.toModel(),
         location.toModel(),

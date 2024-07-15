@@ -7,9 +7,9 @@ data class CharacterModel(
 
 data class InfoModel(
     val count: Int,
+    val next: String?,
     val pages: Int,
-    val next: String,
-    val prev: String?,
+    val prev: String?
 
     )
 
@@ -19,6 +19,7 @@ data class ResultsModel(
     val status: String,
     val species: String,
     val type: String,
+    val gender: String,
     val origin: OriginModel,
     val location: LocationModel,
     val image: String,
@@ -37,3 +38,4 @@ data class LocationModel(
     val name: String,
     val url: String
 )
+

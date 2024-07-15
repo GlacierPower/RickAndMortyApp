@@ -40,7 +40,11 @@ dependencies {
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.work.runtime.ktx)
 
+    //Lottie
+    implementation (libs.android.lottie)
+
     implementation(project(":domain"))
+    implementation(project(":common"))
 
     //Coroutines
     implementation(libs.kotlinx.coroutines.core)
@@ -68,6 +72,5 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit.v121)
-    androidTestImplementation(libs.androidx.espresso.core.v361)
+
 }

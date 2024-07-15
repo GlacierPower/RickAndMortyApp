@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.googleDaggerHiltAndroid)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    id ("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -18,7 +19,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
@@ -43,6 +44,32 @@ android {
 
 dependencies {
 
+
+    //Glide
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
+    //Lottie
+    implementation (libs.android.lottie)
+
+    // SwipeRefreshLayout
+    implementation (libs.androidx.swiperefreshlayout)
+
+    // Coroutine Lifecycle Scopes
+    implementation(libs.androidx.lifecycle.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.kotlinx.coroutines.core.jvm)
+    implementation(libs.kotlinx.coroutines.android)
+
+    //Lifecycle or LiveData
+    implementation(libs.androidx.lifecycle.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.extensions)
+    implementation(libs.lifecycle.runtime.ktx)
+
+    //Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+
     //Hilt
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
@@ -50,16 +77,25 @@ dependencies {
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.work.runtime.ktx)
 
+    //Activity and fragments
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.activity.ktx)
+
     // Navigation Components
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
     implementation(project(":feature"))
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":common"))
 
-    implementation(libs.androidx.core.ktx.v1101)
-    implementation(libs.androidx.appcompat.v161)
-    implementation(libs.material.v190)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
