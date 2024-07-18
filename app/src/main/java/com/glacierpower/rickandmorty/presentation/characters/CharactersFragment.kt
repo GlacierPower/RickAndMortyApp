@@ -13,13 +13,15 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.glacierpower.data.utils.LoadStatePaging
 import com.glacierpower.rickandmorty.databinding.FragmentCharactersBinding
+import com.glacierpower.rickandmorty.presentation.characters.adapter.CharacterAdapter
+import com.glacierpower.rickandmorty.presentation.characters.adapter.CharacterListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class CharactersFragment : Fragment() {
+class CharactersFragment : Fragment(), CharacterListener {
 
     private val viewModel: CharacterViewModel by viewModels()
     private var _viewBinding: FragmentCharactersBinding? = null
@@ -48,6 +50,8 @@ class CharactersFragment : Fragment() {
         viewBinding.filterButton.setOnClickListener {
             val action = CharactersFragmentDirections.actionCharactersFragmentToFilterFragment()
             findNavController(it).navigate(action)
+
+
         }
 
         viewBinding.fragmentCharacterLayout.setOnRefreshListener {
@@ -57,7 +61,7 @@ class CharactersFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        characterAdapter = CharacterAdapter()
+        characterAdapter = CharacterAdapter(this)
         viewBinding.rvCharacters.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
@@ -88,6 +92,11 @@ class CharactersFragment : Fragment() {
                 )
             }
         }
+    }
+
+    override fun getCharacterById(id: Int) {
+        val actionToDetails= CharactersFragmentDirections.actionCharactersFragmentToCharacterDetails(id)
+        findNavController(requireView()).navigate(actionToDetails)
     }
 
 }

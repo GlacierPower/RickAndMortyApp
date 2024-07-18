@@ -13,4 +13,5 @@ interface RickAndMortyRepository {
         name: String = ""
     ): Flow<PagingData<ResultsModel>>
 
+    suspend fun getCharacterById(id:Int):ResultsModel
 }

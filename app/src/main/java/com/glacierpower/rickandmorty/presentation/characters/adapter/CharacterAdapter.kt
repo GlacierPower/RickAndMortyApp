@@ -1,4 +1,4 @@
-package com.glacierpower.rickandmorty.presentation.characters
+package com.glacierpower.rickandmorty.presentation.characters.adapter
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -11,7 +11,7 @@ import com.glacierpower.domain.model.ResultsModel
 import com.glacierpower.rickandmorty.databinding.CharacterItemBinding
 import com.glacierpower.rickandmorty.util.ExtensionFunction.loadImage
 
-class CharacterAdapter() : PagingDataAdapter<ResultsModel,
+class CharacterAdapter(private val characterListener: CharacterListener) : PagingDataAdapter<ResultsModel,
         CharacterAdapter.CharacterViewHolder>(diffUtilCallback) {
 
     class CharacterViewHolder(
@@ -33,6 +33,9 @@ class CharacterAdapter() : PagingDataAdapter<ResultsModel,
         holder.binding.characterName.text = "${character?.name}"
         holder.binding.characterStatus.text = "Status: ${character?.status}"
         character?.image?.let { holder.binding.characterImage.loadImage(it) }
+        holder.itemView.setOnClickListener {
+            characterListener.getCharacterById(character?.id!!)
+        }
         Log.i("BindViewHolder","Success")
 
     }

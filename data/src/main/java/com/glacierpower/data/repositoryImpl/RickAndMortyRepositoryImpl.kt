@@ -5,6 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.glacierpower.data.local.dao.RickAndMortyDao
+import com.glacierpower.data.mappers.toModel
 import com.glacierpower.data.paging.CharactersPagingSource
 import com.glacierpower.data.remote.RickAndMortyService
 import com.glacierpower.domain.RickAndMortyRepository
@@ -38,6 +39,12 @@ class RickAndMortyRepositoryImpl @Inject constructor(
                 }
             ).flow
 
+        }
+    }
+
+    override suspend fun getCharacterById(id: Int): ResultsModel {
+        return withContext(Dispatchers.IO) {
+            rickAndMortyApi.getCharacterById(id).toModel()
         }
     }
 

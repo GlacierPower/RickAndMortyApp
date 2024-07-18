@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolBarElevation">16dp</dimen>
+    <dimen name="arrowSize">30dp</dimen>
+    <dimen name="twMarginStart">18dp</dimen>
+    <dimen name="cardViewSize">150dp</dimen>
+    <dimen name="avatarSize">140dp</dimen>
+    <dimen name="marginHorizontalAvatar">12dp</dimen>
+    <dimen name="marginTopAvatar">8dp</dimen>
+    <dimen name="paddingTopLinearLayout">80dp</dimen>
+    <dimen name="characterStatusTExtSize">16sp</dimen>
+    <dimen name="characterStatusTWMarginTop">20dp</dimen>
+    <dimen name="characterInfoMarginTop">20dp</dimen>
+    <dimen name="dividerSize">1dp</dimen>
+    <dimen name="marginTopEpisode">240dp</dimen>
+    <dimen name="marginTopEpisodeTw">32dp</dimen>
+    <dimen name="paddingBottomRV">50dp</dimen>
+    <dimen name="toolBarTitleTextSize">20sp</dimen>
+    <dimen name="paddingBottomTitleDetails">4dp</dimen>
+    <dimen name="marginStart">16dp</dimen>
+</resources>
