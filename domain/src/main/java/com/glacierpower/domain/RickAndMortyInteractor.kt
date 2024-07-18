@@ -17,5 +17,7 @@ class RickAndMortyInteractor @Inject constructor(
         return rickAndMortyRepository.getCharactersData(status, gender, name)
     }
 
-
+    suspend fun getCharacterById(id: Int): ResultsModel {
+        return rickAndMortyRepository.getCharacterById(id)
+    }
 }

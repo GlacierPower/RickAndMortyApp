@@ -28,7 +28,7 @@ roomRuntime = "2.6.1"
 swiperefreshlayoutVersion = "1.1.0"
 workRuntimeKtx = "2.9.0"
 kotlin = "1.9.0"
-agp = "8.2.2"
+agp = "8.4.2"
 
 [libraries]
 android-lottie = { module = "com.airbnb.android:lottie", version.ref = "lottieVersion" }

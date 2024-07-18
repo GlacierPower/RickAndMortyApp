@@ -7,20 +7,15 @@ import com.glacierpower.domain.RickAndMortyInteractor
 import com.glacierpower.domain.model.ResultsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
-    private val rickAndMortyInteractor: RickAndMortyInteractor,
+    private val rickAndMortyInteractor: RickAndMortyInteractor
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(CharacterState())
-    val state: StateFlow<CharacterState> get() = _state
-
-    suspend fun getCharacters(
+   suspend fun getCharacters(
         status: String,
         gender: String,
         name: String
