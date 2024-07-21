@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="toolBarElevation">16dp</dimen>
     <dimen name="arrowSize">30dp</dimen>
     <dimen name="twMarginStart">18dp</dimen>
     <dimen name="cardViewSize">150dp</dimen>
@@ -18,4 +17,15 @@
     <dimen name="toolBarTitleTextSize">20sp</dimen>
     <dimen name="paddingBottomTitleDetails">4dp</dimen>
     <dimen name="marginStart">16dp</dimen>
+    <dimen name="defaultPadding">16dp</dimen>
+    <dimen name="episodeTextSize">20sp</dimen>
+    <dimen name="defaultMargin">4dp</dimen>
+    <dimen name="lottieSize">250dp</dimen>
+    <dimen name="rvMarginTop">60dp</dimen>
+    <dimen name="rvMarginBottom">50dp</dimen>
+    <dimen name="toolBarElevation">16dp</dimen>
+    <dimen name="filterSizeIB">48dp</dimen>
+    <dimen name="filterPaddingEnd">6dp</dimen>
+    <dimen name="btnRetryMarginBottom">76dp</dimen>
+    <dimen name="rgPaddingHorizontal">12dp</dimen>
 </resources>

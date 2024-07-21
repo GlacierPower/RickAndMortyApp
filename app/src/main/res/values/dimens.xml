@@ -13,4 +13,5 @@
     <dimen name="radioGroupPaddingHorizontal">12dp</dimen>
     <dimen name="marginTopRv">50dp</dimen>
     <dimen name="lottieAnimationSize">250dp</dimen>
+    <dimen name="filterSizeIB">48dp</dimen>
 </resources>

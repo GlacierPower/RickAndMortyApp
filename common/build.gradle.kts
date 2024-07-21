@@ -40,6 +40,10 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    //Activity and fragments
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.activity.ktx)
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

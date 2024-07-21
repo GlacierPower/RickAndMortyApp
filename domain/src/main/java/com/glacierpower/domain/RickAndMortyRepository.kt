@@ -1,6 +1,7 @@
 package com.glacierpower.domain
 
 import androidx.paging.PagingData
+import com.glacierpower.domain.model.EpisodeModel
 import com.glacierpower.domain.model.ResultsModel
 import kotlinx.coroutines.flow.Flow
 
@@ -14,4 +15,11 @@ interface RickAndMortyRepository {
     ): Flow<PagingData<ResultsModel>>
 
     suspend fun getCharacterById(id:Int):ResultsModel
+
+    suspend fun getEpisodeById(id:Int):EpisodeModel
+
+    suspend fun getAllEpisode(
+        name:String,
+        episode:String
+    ): Flow<PagingData<EpisodeModel>>
 }

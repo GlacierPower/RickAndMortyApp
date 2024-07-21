@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.glacierpower.data.utils.LoadStatePaging
@@ -21,13 +20,11 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class CharactersFragment : Fragment(), CharacterListener {
+class CharactersFragment() : Fragment(), CharacterListener {
 
     private val viewModel: CharacterViewModel by viewModels()
     private var _viewBinding: FragmentCharactersBinding? = null
     private val viewBinding get() = _viewBinding!!
-
-    private val args: CharactersFragmentArgs by navArgs()
 
     private lateinit var characterAdapter: CharacterAdapter
     override fun onCreateView(
@@ -46,18 +43,15 @@ class CharactersFragment : Fragment(), CharacterListener {
         setupRecyclerView()
         getCharacter()
         loadStateAdapter()
-
-        viewBinding.filterButton.setOnClickListener {
-            val action = CharactersFragmentDirections.actionCharactersFragmentToFilterFragment()
-            findNavController(it).navigate(action)
+        navigateToFilter()
 
 
-        }
 
         viewBinding.fragmentCharacterLayout.setOnRefreshListener {
             getCharacter()
             viewBinding.fragmentCharacterLayout.isRefreshing = false
         }
+
     }
 
     private fun setupRecyclerView() {
@@ -71,15 +65,16 @@ class CharactersFragment : Fragment(), CharacterListener {
 
     private fun getCharacter() {
         lifecycleScope.launch {
-            viewModel.getCharacters(args.status, args.gender, args.name).collectLatest { data ->
-                characterAdapter.submitData(data)
+            viewModel.state.collectLatest { data ->
+                characterAdapter.submitData(data.characters!!)
 
             }
+
         }
     }
 
     private fun loadStateAdapter() {
-        viewLifecycleOwner.lifecycleScope.launch {
+        lifecycleScope.launch {
             characterAdapter.loadStateFlow.collect {
                 val isListEmpty =
                     it.refresh is LoadState.Error && characterAdapter.itemCount == 0
@@ -93,9 +88,17 @@ class CharactersFragment : Fragment(), CharacterListener {
             }
         }
     }
+    private fun navigateToFilter(){
+        viewBinding.filterButton.setOnClickListener {
+            val action = CharactersFragmentDirections.actionCharactersFragmentToFilterFragment()
+            findNavController(it).navigate(action)
+
+        }
+    }
 
     override fun getCharacterById(id: Int) {
-        val actionToDetails= CharactersFragmentDirections.actionCharactersFragmentToCharacterDetails(id)
+        val actionToDetails =
+            CharactersFragmentDirections.actionCharactersFragmentToCharacterDetails(id)
         findNavController(requireView()).navigate(actionToDetails)
     }
 

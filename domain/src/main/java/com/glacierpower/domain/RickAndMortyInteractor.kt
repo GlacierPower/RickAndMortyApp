@@ -1,6 +1,7 @@
 package com.glacierpower.domain
 
 import androidx.paging.PagingData
+import com.glacierpower.domain.model.EpisodeModel
 import com.glacierpower.domain.model.ResultsModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -19,5 +20,16 @@ class RickAndMortyInteractor @Inject constructor(
 
     suspend fun getCharacterById(id: Int): ResultsModel {
         return rickAndMortyRepository.getCharacterById(id)
+    }
+
+    suspend fun getEpisodeById(id: Int): EpisodeModel {
+        return rickAndMortyRepository.getEpisodeById(id)
+    }
+
+    suspend fun getAllEpisode(
+        name: String,
+        episode: String
+    ): Flow<PagingData<EpisodeModel>> {
+        return rickAndMortyRepository.getAllEpisode(name, episode)
     }
 }
