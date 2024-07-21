@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.glacierpower.feature.databinding.FragmentCharacterDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -21,7 +20,6 @@ class CharacterDetails : Fragment() {
     private var _viewBinding: FragmentCharacterDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
     private val viewModel: CharacterDetailsViewModel by viewModels()
-    private val args: CharacterDetailsArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +35,12 @@ class CharacterDetails : Fragment() {
             findNavController().popBackStack()
 
         }
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.state.collect {details->
+        submitData()
+    }
+
+    private fun submitData() {
+        lifecycleScope.launch {
+            viewModel.state.collect { details ->
                 viewBinding.characterImage.loadImage(details.character?.image.toString())
                 viewBinding.characterName.text = details.character?.name
                 viewBinding.characterGender.text = details.character?.type
@@ -49,7 +51,6 @@ class CharacterDetails : Fragment() {
                 viewBinding.characterLocation.text = details.character?.location?.name
             }
         }
-
     }
 
 

@@ -7,8 +7,10 @@ import androidx.paging.PagingData
 import com.glacierpower.data.local.dao.RickAndMortyDao
 import com.glacierpower.data.mappers.toModel
 import com.glacierpower.data.paging.CharactersPagingSource
+import com.glacierpower.data.paging.EpisodeDataSource
 import com.glacierpower.data.remote.RickAndMortyService
 import com.glacierpower.domain.RickAndMortyRepository
+import com.glacierpower.domain.model.EpisodeModel
 import com.glacierpower.domain.model.ResultsModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -48,6 +50,27 @@ class RickAndMortyRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getEpisodeById(id: Int): EpisodeModel {
+        return withContext(Dispatchers.IO) {
+            rickAndMortyApi.getEpisodeById(id).toModel()
+        }
+    }
+
+    override suspend fun getAllEpisode(
+        name: String,
+        episode: String
+    ): Flow<PagingData<EpisodeModel>> {
+        return withContext(Dispatchers.IO) {
+            Pager(
+                config = PagingConfig(pageSize = 25),
+                pagingSourceFactory = {
+                    EpisodeDataSource(rickAndMortyApi, name, episode)
+                }
+            ).flow
+        }
+    }
 }
+
+
 
 

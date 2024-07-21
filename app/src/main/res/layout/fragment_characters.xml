@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:elevation="16dp"
+            android:elevation="@dimen/defaultMargin"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:contentInsetStart="0dp"
@@ -27,27 +27,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginHorizontal="@dimen/defaultMargin"
                 android:orientation="horizontal"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="13dp">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="13dp"
-                    android:layout_height="13dp"
-                    android:layout_marginEnd="30dp"
-                    android:visibility="gone"
-                    app:cardCornerRadius="13dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/filterButton"
-                    app:layout_constraintTop_toTopOf="@+id/filterButton"
-                    app:layout_constraintVertical_bias="0.19"
-                    tools:visibility="visible" />
+                tools:layout_editor_absoluteX="@dimen/defaultMargin">
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/episodeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.h6"
                     android:text="@string/character"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +43,8 @@
 
                 <ImageButton
                     android:id="@+id/filterButton"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/filterSizeIB"
+                    android:layout_height="@dimen/filterSizeIB"
                     android:layout_gravity="end"
                     android:background="@color/white"
                     android:padding="6dp"

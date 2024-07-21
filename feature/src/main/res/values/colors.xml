@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="speciesColor">#8E8E93</color>
     <color name="detailsColor">#6E798C</color>
+    <color name="clearColor">#FF5856D6</color>
 </resources>

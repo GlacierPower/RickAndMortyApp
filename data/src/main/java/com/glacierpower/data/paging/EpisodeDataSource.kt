@@ -3,32 +3,23 @@ package com.glacierpower.data.paging
 import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.glacierpower.common.GenderState
-import com.glacierpower.common.StatusState
 import com.glacierpower.data.mappers.toModel
 import com.glacierpower.data.remote.RickAndMortyService
-import com.glacierpower.domain.model.ResultsModel
+import com.glacierpower.domain.model.EpisodeModel
 import javax.inject.Inject
 
-private const val STARTING_PAGE = 1
 
-class CharacterPagingSource @Inject constructor(
+class EpisodeDataSource @Inject constructor(
     private val rickAndMortyService: RickAndMortyService,
-    private val statusState: StatusState,
-    private val genderState: GenderState,
-    private val nameQuery: String
-) : PagingSource<Int, ResultsModel>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ResultsModel> {
-        val pageNumber = params.key ?: STARTING_PAGE
+    private val name: String,
+    private val episode: String
+) : PagingSource<Int, EpisodeModel>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodeModel> {
+        val pageNumber = params.key ?: 1
 
         return try {
             val response =
-                rickAndMortyService.getCharacter(
-                    page = pageNumber,
-                    status = statusState.status,
-                    gender = genderState.status,
-                    name = nameQuery
-                )
+                rickAndMortyService.getAllEpisode(pageNumber, name, episode)
 
             val data = response.results
 
@@ -42,7 +33,7 @@ class CharacterPagingSource @Inject constructor(
 
             LoadResult.Page(
                 data = data.map { it.toModel() },
-                prevKey = if (pageNumber == STARTING_PAGE) null else pageNumber - 1,
+                prevKey = if (pageNumber == 1) null else pageNumber - 1,
                 nextKey = nextPageNumber
             )
 
@@ -51,12 +42,9 @@ class CharacterPagingSource @Inject constructor(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ResultsModel>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, EpisodeModel>): Int? {
         return null
     }
 
 
 }
-
-
-
