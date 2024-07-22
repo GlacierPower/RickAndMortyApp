@@ -8,9 +8,11 @@ import com.glacierpower.data.local.dao.RickAndMortyDao
 import com.glacierpower.data.mappers.toModel
 import com.glacierpower.data.paging.CharactersPagingSource
 import com.glacierpower.data.paging.EpisodeDataSource
+import com.glacierpower.data.paging.LocationPagingSource
 import com.glacierpower.data.remote.RickAndMortyService
 import com.glacierpower.domain.RickAndMortyRepository
 import com.glacierpower.domain.model.EpisodeModel
+import com.glacierpower.domain.model.LocationResultModel
 import com.glacierpower.domain.model.ResultsModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -65,6 +67,21 @@ class RickAndMortyRepositoryImpl @Inject constructor(
                 config = PagingConfig(pageSize = 25),
                 pagingSourceFactory = {
                     EpisodeDataSource(rickAndMortyApi, name, episode)
+                }
+            ).flow
+        }
+    }
+
+    override suspend fun getAllLocation(
+        name: String,
+        type: String,
+        dimension: String
+    ): Flow<PagingData<LocationResultModel>> {
+        return withContext(Dispatchers.IO) {
+            Pager(
+                config = PagingConfig(pageSize = 25),
+                pagingSourceFactory = {
+                    LocationPagingSource(rickAndMortyApi, name, type, dimension)
                 }
             ).flow
         }

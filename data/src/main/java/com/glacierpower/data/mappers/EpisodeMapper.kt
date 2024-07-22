@@ -1,7 +1,7 @@
 package com.glacierpower.data.mappers
 
-import com.glacierpower.common.EpisodeResponse
-import com.glacierpower.common.EpisodeResult
+import com.glacierpower.common.response.EpisodeResponse
+import com.glacierpower.common.response.EpisodeResult
 import com.glacierpower.domain.model.EpisodeModel
 import com.glacierpower.domain.model.EpisodeResponseModel
 

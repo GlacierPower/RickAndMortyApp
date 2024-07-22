@@ -44,4 +44,8 @@
     <dimen name="layoutMarginTop">140dp</dimen>
     <dimen name="characterTitleMarginTop">32dp</dimen>
     <dimen name="episodeInfoMargin">8dp</dimen>
+    <dimen name="cardViewCornerRadius">8dp</dimen>
+    <dimen name="cardElevation">2dp</dimen>
+    <dimen name="strokeWidth">1dp</dimen>
+    <dimen name="locationMarginTop">4dp</dimen>
 </resources>

@@ -23,10 +23,24 @@
     <string name="enter_name_or_episode_code">Enter name or episode code</string>
     <string name="clear">Clear</string>
     <string name="empty_line" />
-    <string name="search_by_name">Search by name</string>
-    <string name="search_by_episode">Search by episode</string>
+    <string name="filter_by_name">Filter by name</string>
+    <string name="search_by_episode">Filter by episode</string>
     <string name="episode_not_found">Episode not found</string>
     <string name="episode_name">Episode Name</string>
     <string name="episode_date">Episode Date</string>
     <string name="status">Status</string>
+    <string name="location_name">Location name</string>
+    <string name="planet">Planet</string>
+    <string name="location_not_found">Location not found</string>
+    <string name="female_gender">female</string>
+    <string name="male_gender">male</string>
+    <string name="unknown_gender">unknown</string>
+    <string name="genderless_gender">genderless</string>
+    <string name="alive_status">alive</string>
+    <string name="dead_status">dead</string>
+    <string name="unknown_status">unknown</string>
+    <string name="location_filter">Location filter</string>
+    <string name="filter_by_type">Filter by type</string>
+    <string name="filter_by_dimension">Filter by dimension</string>
+    <string name="enter_name_type_or_dimension">Enter name, type or dimension</string>
 </resources>

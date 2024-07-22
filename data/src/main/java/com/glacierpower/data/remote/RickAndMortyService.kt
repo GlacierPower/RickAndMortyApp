@@ -1,9 +1,10 @@
 package com.glacierpower.data.remote
 
-import com.glacierpower.common.CharacterData
-import com.glacierpower.common.CharacterResponse
-import com.glacierpower.common.EpisodeResponse
-import com.glacierpower.common.EpisodeResult
+import com.glacierpower.common.response.CharacterData
+import com.glacierpower.common.response.CharacterResponse
+import com.glacierpower.common.response.EpisodeResponse
+import com.glacierpower.common.response.EpisodeResult
+import com.glacierpower.common.response.LocationResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -30,5 +31,13 @@ interface RickAndMortyService {
         @Query("name") name: String = "",
         @Query("episode") episode: String = ""
     ): EpisodeResponse
+
+    @GET("location/")
+    suspend fun getAllLocation(
+        @Query("page") page: Int? = null,
+        @Query("name") name: String = "",
+        @Query("type") type: String = "",
+        @Query("dimension") dimension: String = ""
+    ): LocationResponse
 
 }
