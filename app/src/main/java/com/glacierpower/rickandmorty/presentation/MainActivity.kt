@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.glacierpower.feature.character.character.CharacterViewModel
 import com.glacierpower.rickandmorty.R
 import com.glacierpower.rickandmorty.databinding.ActivityMainBinding
-import com.glacierpower.rickandmorty.presentation.characters.CharacterViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         _viewBinding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(_viewBinding.root)
         setSupportActionBar(_viewBinding.toolbar)

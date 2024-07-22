@@ -11,4 +11,6 @@
     <color name="detailsColor">#6E798C</color>
     <color name="clearColor">#FF5856D6</color>
     <color name="layoutBackground">#F2F2F7</color>
+    <color name="cardViewColor">#E5E5EA</color>
+    <color name="splashColor">#9575CD</color>
 </resources>

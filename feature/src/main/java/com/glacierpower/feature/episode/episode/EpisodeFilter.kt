@@ -44,13 +44,13 @@ class EpisodeFilter : BottomSheetDialogFragment() {
 
         viewBinding.rgSearch.setOnCheckedChangeListener { _, idThatSelected ->
             when (idThatSelected) {
-                viewBinding.searchByEpisode.id -> {
+                viewBinding.filterByEpisode.id -> {
                     viewBinding.filterQuery.addTextChangedListener {
                         episode = it.toString()
                     }
                 }
 
-                viewBinding.searchByName.id -> {
+                viewBinding.filterByName.id -> {
                     viewBinding.filterQuery.addTextChangedListener {
                         name = it.toString()
                     }

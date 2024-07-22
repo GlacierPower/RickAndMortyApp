@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/charactersFragment"
-        android:name="com.glacierpower.rickandmorty.presentation.characters.CharactersFragment"
+        android:name="com.glacierpower.feature.character.character.CharactersFragment"
         android:label="fragment_characters"
         tools:layout="@layout/fragment_characters">
         <action
@@ -32,7 +32,7 @@
 
     <dialog
         android:id="@+id/filterFragment"
-        android:name="com.glacierpower.rickandmorty.presentation.characters.FilterFragment"
+        android:name="com.glacierpower.feature.character.character.FilterFragment"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_filter">
         <action
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/characterDetails"
-        android:name="com.glacierpower.feature.characterDetails.CharacterDetails"
+        android:name="com.glacierpower.feature.character.characterDetails.CharacterDetails"
         android:label="CharacterDetails">
         <action
             android:id="@+id/action_characterDetails_to_charactersFragment"
@@ -100,5 +100,37 @@
             android:id="@+id/action_episodeDetailsFragment_to_characterDetails"
             app:destination="@id/characterDetails" />
     </fragment>
+
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.glacierpower.feature.location.Location"
+        android:label="Episode"
+        tools:layout="@layout/locationFragment">
+
+        <action
+            android:id="@+id/action_locationFragment_to_locationFilter"
+            app:destination="@id/locationFilter" />
+        <argument
+            android:name="locationName"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="locationType"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument android:name="locationDimension"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+
+    <dialog
+        android:id="@+id/locationFilter"
+        android:name="com.glacierpower.feature.location.LocationFilter"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_location_filter">
+        <action
+            android:id="@+id/action_locationFilter_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </dialog>
 
 </navigation>

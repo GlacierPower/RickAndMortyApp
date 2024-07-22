@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.glacierpower.domain.RickAndMortyInteractor
 import com.glacierpower.domain.model.EpisodeModel
+import com.glacierpower.feature.episode.episode.state.EpisodeState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

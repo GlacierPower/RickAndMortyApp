@@ -28,4 +28,5 @@
     <string name="dead_status">dead</string>
     <string name="unknown_status">unknown</string>
     <string name="emty_line" />
+    <string name="rick_and_morty">Rick and Morty</string>
 </resources>

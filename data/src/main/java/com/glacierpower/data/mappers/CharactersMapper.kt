@@ -1,10 +1,10 @@
 package com.glacierpower.data.mappers
 
-import com.glacierpower.common.CharacterData
-import com.glacierpower.common.CharacterResponse
-import com.glacierpower.common.Info
-import com.glacierpower.common.Location
-import com.glacierpower.common.Origin
+import com.glacierpower.common.response.CharacterData
+import com.glacierpower.common.response.CharacterResponse
+import com.glacierpower.common.response.Info
+import com.glacierpower.common.response.Location
+import com.glacierpower.common.response.Origin
 import com.glacierpower.domain.model.CharacterModel
 import com.glacierpower.domain.model.InfoModel
 import com.glacierpower.domain.model.LocationModel

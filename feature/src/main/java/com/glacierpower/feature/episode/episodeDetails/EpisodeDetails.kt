@@ -38,6 +38,7 @@ class EpisodeDetails : Fragment(), EpisodeAdapterListener {
         submitData()
         getCharacter()
         navigateBack()
+
     }
 
     private fun navigateBack() {
