@@ -1,4 +1,4 @@
-package com.glacierpower.feature.episode
+package com.glacierpower.feature.episode.episode.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.glacierpower.domain.model.EpisodeModel
 import com.glacierpower.feature.databinding.EpisodeItemBinding
 
-class EpisodeAdapter () : PagingDataAdapter<EpisodeModel,
+class EpisodeAdapter (private val episodeListener: EpisodeListener) : PagingDataAdapter<EpisodeModel,
         EpisodeAdapter.EpisodeViewHolder>(diffUtilCallback) {
 
     class EpisodeViewHolder(
@@ -31,6 +31,9 @@ class EpisodeAdapter () : PagingDataAdapter<EpisodeModel,
         holder.binding.episodeName.text = episode?.name
         holder.binding.episode.text = episode?.episode
         holder.binding.airDate.text = episode?.air_date
+        holder.itemView.setOnClickListener {
+            episodeListener.getEpisodeById(episode?.id!!)
+        }
     }
 
     companion object {

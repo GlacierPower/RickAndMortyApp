@@ -1,4 +1,4 @@
-package com.glacierpower.feature.episode
+package com.glacierpower.feature.episode.episode
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

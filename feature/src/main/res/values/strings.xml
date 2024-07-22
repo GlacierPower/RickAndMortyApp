@@ -26,4 +26,7 @@
     <string name="search_by_name">Search by name</string>
     <string name="search_by_episode">Search by episode</string>
     <string name="episode_not_found">Episode not found</string>
+    <string name="episode_name">Episode Name</string>
+    <string name="episode_date">Episode Date</string>
+    <string name="status">Status</string>
 </resources>

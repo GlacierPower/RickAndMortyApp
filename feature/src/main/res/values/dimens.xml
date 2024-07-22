@@ -24,8 +24,24 @@
     <dimen name="rvMarginTop">60dp</dimen>
     <dimen name="rvMarginBottom">50dp</dimen>
     <dimen name="toolBarElevation">16dp</dimen>
-    <dimen name="filterSizeIB">48dp</dimen>
     <dimen name="filterPaddingEnd">6dp</dimen>
     <dimen name="btnRetryMarginBottom">76dp</dimen>
     <dimen name="rgPaddingHorizontal">12dp</dimen>
+    <dimen name="episodeTextSizeTW">16sp</dimen>
+    <dimen name="smallSize">8dp</dimen>
+    <dimen name="imageSize">80dp</dimen>
+    <dimen name="marginName">160dp</dimen>
+    <dimen name="elevationToolbar">16dp</dimen>
+    <dimen name="defaultMarginFilter">16dp</dimen>
+    <dimen name="paddingHorizontalTW">20dp</dimen>
+    <dimen name="paddingTopTW">8dp</dimen>
+    <dimen name="paddingBottomTW">6dp</dimen>
+    <dimen name="radioGroupPaddingHorizontal">12dp</dimen>
+    <dimen name="marginTopRv">50dp</dimen>
+    <dimen name="lottieAnimationSize">250dp</dimen>
+    <dimen name="filterSizeIB">48dp</dimen>
+    <dimen name="marginBottomCharacterName">10dp</dimen>
+    <dimen name="layoutMarginTop">140dp</dimen>
+    <dimen name="characterTitleMarginTop">32dp</dimen>
+    <dimen name="episodeInfoMargin">8dp</dimen>
 </resources>
