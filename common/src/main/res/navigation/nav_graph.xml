@@ -48,14 +48,14 @@
             android:id="@+id/action_characterDetails_to_charactersFragment"
             app:destination="@id/charactersFragment" />
         <argument
-            android:name="id"
+            android:name="idCharacter"
             android:defaultValue="1"
             app:argType="integer" />
     </fragment>
 
     <fragment
         android:id="@+id/episodeFragment"
-        android:name="com.glacierpower.feature.episode.Episode"
+        android:name="com.glacierpower.feature.episode.episode.Episode"
         android:label="Episode"
         tools:layout="@layout/episodeFragment">
         <action
@@ -68,11 +68,14 @@
         <argument
             android:name="episode"
             android:defaultValue="" />
+        <action
+            android:id="@+id/action_episodeFragment_to_episodeDetailsFragment"
+            app:destination="@id/episodeDetailsFragment" />
     </fragment>
 
     <dialog
         android:id="@+id/episodeFilter"
-        android:name="com.glacierpower.feature.episode.EpisodeFilter"
+        android:name="com.glacierpower.feature.episode.episode.EpisodeFilter"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_episode_filter">
 
@@ -80,5 +83,22 @@
             android:id="@+id/action_episodeFilter_to_episodeFragment"
             app:destination="@id/episodeFragment" />
     </dialog>
+
+    <fragment
+        android:id="@+id/episodeDetailsFragment"
+        android:name="com.glacierpower.feature.episode.episodeDetails.EpisodeDetails"
+        android:label="Episode"
+        tools:layout="@layout/fragment_episodeDetails">
+        <action
+            android:id="@+id/action_episodeDetailsFragment_to_episodeFragment"
+            app:destination="@id/episodeFragment" />
+        <argument
+            android:name="idEpisode"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_episodeDetailsFragment_to_characterDetails"
+            app:destination="@id/characterDetails" />
+    </fragment>
 
 </navigation>

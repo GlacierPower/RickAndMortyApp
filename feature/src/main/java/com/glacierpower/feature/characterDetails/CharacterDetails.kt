@@ -1,6 +1,7 @@
 package com.glacierpower.feature.characterDetails
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,18 +9,23 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.glacierpower.feature.characterDetails.adapter.CharacterEpisodeAdapter
+import com.glacierpower.feature.characterDetails.adapter.CharacterEpisodeListener
 import com.glacierpower.feature.databinding.FragmentCharacterDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import util.ExtensionFunction.loadImage
 
 @AndroidEntryPoint
-class CharacterDetails : Fragment() {
+class CharacterDetails : Fragment(), CharacterEpisodeListener {
 
 
     private var _viewBinding: FragmentCharacterDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
     private val viewModel: CharacterDetailsViewModel by viewModels()
+    private lateinit var characteEpisodeCharacterAdapter: CharacterEpisodeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,9 +39,30 @@ class CharacterDetails : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.arrowBack.setOnClickListener {
             findNavController().popBackStack()
-
         }
+        setupRecyclerView()
         submitData()
+        getEpisode()
+    }
+
+    private fun getEpisode(){
+        lifecycleScope.launch {
+            viewModel.state.collectLatest {state->
+                characteEpisodeCharacterAdapter.differ.submitList(state.episodeList)
+                Log.i("Adapter","${state.episodeList?.map { 
+                    it.name
+                }}")
+            }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        characteEpisodeCharacterAdapter = CharacterEpisodeAdapter(this)
+        viewBinding.recyclerViewEpisode.apply {
+            this.layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = characteEpisodeCharacterAdapter
+        }
     }
 
     private fun submitData() {
@@ -51,6 +78,10 @@ class CharacterDetails : Fragment() {
                 viewBinding.characterLocation.text = details.character?.location?.name
             }
         }
+    }
+
+    override fun getEpisodeById(id: Int) {
+        TODO("Not yet implemented")
     }
 
 

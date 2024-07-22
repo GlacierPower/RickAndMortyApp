@@ -1,4 +1,4 @@
-package com.glacierpower.feature.episode
+package com.glacierpower.feature.episode.episode
 
 import android.os.Bundle
 import android.view.LayoutInflater

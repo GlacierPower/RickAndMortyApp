@@ -1,4 +1,4 @@
-package com.glacierpower.feature.episode
+package com.glacierpower.feature.episode.episode
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,16 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.glacierpower.data.utils.LoadStatePaging
 import com.glacierpower.feature.databinding.FragmentEpisodeBinding
+import com.glacierpower.feature.episode.episode.adapter.EpisodeAdapter
+import com.glacierpower.feature.episode.episode.adapter.EpisodeListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class Episode : Fragment() {
+class Episode : Fragment(), EpisodeListener {
 
     private val viewModel: EpisodeViewModel by viewModels()
     private var _viewBinding: FragmentEpisodeBinding? = null
@@ -42,7 +45,7 @@ class Episode : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        episodeAdapter = EpisodeAdapter()
+        episodeAdapter = EpisodeAdapter(this)
         viewBinding.rvEpisode.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
@@ -81,6 +84,11 @@ class Episode : Fragment() {
                 )
             }
         }
+    }
+
+    override fun getEpisodeById(id: Int) {
+        val action = EpisodeDirections.actionEpisodeFragmentToEpisodeDetailsFragment(id)
+        findNavController().navigate(action)
     }
 
 }

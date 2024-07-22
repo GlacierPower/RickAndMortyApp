@@ -20,7 +20,7 @@ class CharacterDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        savedStateHandle.get<Int>("id")?.let { id ->
+        savedStateHandle.get<Int>("idCharacter")?.let { id ->
             getCharacterById(id)
         }
     }
@@ -29,27 +29,29 @@ class CharacterDetailsViewModel @Inject constructor(
     val state: StateFlow<CharacterDetailsState> get() = _state
 
     private fun getCharacterById(id: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch() {
             val data = rickAndMortyInteractor.getCharacterById(id)
 
             _state.value = _state.value.copy(
                 character = data
             )
 
-            rickAndMortyInteractor.getCharacterById(id)
-
             val episodeList = _state.value.character!!.episode
-
             val episodes: MutableList<EpisodeModel> = mutableListOf()
-            _state.value = _state.value.copy(isLoadingEpisodeInfo = true)
-            episodeList.forEach { episode ->
-                val episode = async {
-                    val id = (episode.split("/"))[5]
-                    rickAndMortyInteractor.getEpisodeById(id.toInt())
+            _state.value = _state.value.copy(isLoading = true)
+            episodeList.forEach { episodeUrl ->
+                val episodeModel = async {
+                    val episodeId = (episodeUrl.split("/"))[5]
+                    val episode = rickAndMortyInteractor.getEpisodeById(episodeId.toInt())
+                    episode
                 }
-                episode.await()
+                episodes.add(episodeModel.await())
             }
+
+            _state.value = _state.value.copy(
+                episodeList = episodes,
+                isLoading = false
+            )
         }
     }
-
 }
