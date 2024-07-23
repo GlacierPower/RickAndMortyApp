@@ -29,4 +29,6 @@ interface RickAndMortyRepository {
         type:String,
         dimension:String
     ):Flow<PagingData<LocationResultModel>>
+
+    suspend fun getLocationById(id:Int):LocationResultModel
 }

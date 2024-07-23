@@ -5,6 +5,7 @@ import com.glacierpower.common.response.CharacterResponse
 import com.glacierpower.common.response.EpisodeResponse
 import com.glacierpower.common.response.EpisodeResult
 import com.glacierpower.common.response.LocationResponse
+import com.glacierpower.common.response.LocationResults
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -39,5 +40,8 @@ interface RickAndMortyService {
         @Query("type") type: String = "",
         @Query("dimension") dimension: String = ""
     ): LocationResponse
+
+    @GET("location/{id}")
+    suspend fun getLocationByID(@Path("id") id: Int): LocationResults
 
 }

@@ -48,4 +48,5 @@
     <dimen name="cardElevation">2dp</dimen>
     <dimen name="strokeWidth">1dp</dimen>
     <dimen name="locationMarginTop">4dp</dimen>
+    <dimen name="errorTextSize">24sp</dimen>
 </resources>

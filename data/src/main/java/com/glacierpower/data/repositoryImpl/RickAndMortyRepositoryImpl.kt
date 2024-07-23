@@ -86,6 +86,12 @@ class RickAndMortyRepositoryImpl @Inject constructor(
             ).flow
         }
     }
+
+    override suspend fun getLocationById(id: Int): LocationResultModel {
+        return withContext(Dispatchers.IO) {
+            rickAndMortyApi.getLocationByID(id).toModel()
+        }
+    }
 }
 
 

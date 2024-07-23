@@ -1,4 +1,4 @@
-package com.glacierpower.feature.location
+package com.glacierpower.feature.location.location
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,8 +12,8 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.glacierpower.data.utils.LoadStatePaging
 import com.glacierpower.feature.databinding.FragmentLocationBinding
-import com.glacierpower.feature.location.adapter.LocationAdapter
-import com.glacierpower.feature.location.adapter.LocationListener
+import com.glacierpower.feature.location.location.adapter.LocationAdapter
+import com.glacierpower.feature.location.location.adapter.LocationListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -83,7 +83,8 @@ class Location : Fragment(), LocationListener {
     }
 
     override fun getLocationById(id: Int) {
-        TODO("Not yet implemented")
+        val action = LocationDirections.actionLocationFragmentToLocationDetailsFragment(id)
+        findNavController().navigate(action)
     }
 
 }

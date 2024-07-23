@@ -1,4 +1,4 @@
-package com.glacierpower.feature.location
+package com.glacierpower.feature.location.location
 
 import android.os.Bundle
 import android.view.LayoutInflater

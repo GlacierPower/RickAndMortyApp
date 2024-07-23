@@ -1,4 +1,4 @@
-package com.glacierpower.feature.location.state
+package com.glacierpower.feature.location.location.state
 
 import androidx.paging.PagingData
 import com.glacierpower.domain.model.LocationResultModel

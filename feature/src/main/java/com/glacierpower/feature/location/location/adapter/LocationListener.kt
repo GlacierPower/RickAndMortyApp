@@ -1,4 +1,4 @@
-package com.glacierpower.feature.location.adapter
+package com.glacierpower.feature.location.location.adapter
 
 interface LocationListener {
     fun getLocationById(id:Int)
