@@ -1,4 +1,4 @@
-package com.glacierpower.feature.location
+package com.glacierpower.feature.location.location
 
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
@@ -8,7 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.glacierpower.domain.RickAndMortyInteractor
 import com.glacierpower.domain.model.LocationResultModel
-import com.glacierpower.feature.location.state.LocationState
+import com.glacierpower.feature.location.location.state.LocationState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

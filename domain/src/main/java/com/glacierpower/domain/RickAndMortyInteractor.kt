@@ -41,4 +41,8 @@ class RickAndMortyInteractor @Inject constructor(
     ): Flow<PagingData<LocationResultModel>> {
         return rickAndMortyRepository.getAllLocation(name, type, dimension)
     }
+
+    suspend fun getLocationById(id:Int):LocationResultModel{
+        return rickAndMortyRepository.getLocationById(id)
+    }
 }

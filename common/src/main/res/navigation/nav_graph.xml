@@ -103,7 +103,7 @@
 
     <fragment
         android:id="@+id/locationFragment"
-        android:name="com.glacierpower.feature.location.Location"
+        android:name="com.glacierpower.feature.location.location.Location"
         android:label="Episode"
         tools:layout="@layout/locationFragment">
 
@@ -121,16 +121,34 @@
         <argument android:name="locationDimension"
             app:argType="string"
             android:defaultValue=""/>
+        <action
+            android:id="@+id/action_locationFragment_to_locationDetailsFragment"
+            app:destination="@id/locationDetailsFragment" />
     </fragment>
 
     <dialog
         android:id="@+id/locationFilter"
-        android:name="com.glacierpower.feature.location.LocationFilter"
+        android:name="com.glacierpower.feature.location.location.LocationFilter"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_location_filter">
         <action
             android:id="@+id/action_locationFilter_to_locationFragment"
             app:destination="@id/locationFragment" />
     </dialog>
+
+    <fragment
+        android:id="@+id/locationDetailsFragment"
+        android:name="com.glacierpower.feature.location.locationDetails.LocationDetails"
+        android:label="Location Details"
+        tools:layout="@layout/fragment_location_details">
+        <argument
+            android:name="idLocation"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_locationDetailsFragment_to_characterDetails"
+            app:destination="@id/characterDetails" />
+
+    </fragment>
 
 </navigation>

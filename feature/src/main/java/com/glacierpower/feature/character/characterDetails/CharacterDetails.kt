@@ -13,19 +13,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.glacierpower.feature.character.characterDetails.adapter.CharacterEpisodeAdapter
 import com.glacierpower.feature.character.characterDetails.adapter.CharacterEpisodeListener
 import com.glacierpower.feature.databinding.FragmentCharacterDetailsBinding
+import com.glacierpower.feature.episode.episode.adapter.EpisodeAdapter
+import com.glacierpower.feature.episode.episode.adapter.EpisodeListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import util.ExtensionFunction.loadImage
 
 @AndroidEntryPoint
-class CharacterDetails : Fragment(), CharacterEpisodeListener {
+class CharacterDetails : Fragment(), CharacterEpisodeListener,EpisodeListener {
 
 
     private var _viewBinding: FragmentCharacterDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
     private val viewModel: CharacterDetailsViewModel by viewModels()
     private lateinit var characteEpisodeCharacterAdapter: CharacterEpisodeAdapter
+    private val adapter: EpisodeAdapter by lazy { EpisodeAdapter(this) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +66,8 @@ class CharacterDetails : Fragment(), CharacterEpisodeListener {
             setHasFixedSize(true)
             adapter = characteEpisodeCharacterAdapter
         }
+        viewBinding.recyclerViewEpisode.layoutManager = LinearLayoutManager(requireContext())
+        viewBinding.recyclerViewEpisode.adapter = adapter
     }
 
     private fun submitData() {
