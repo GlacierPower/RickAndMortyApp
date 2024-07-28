@@ -1,6 +1,7 @@
 package com.glacierpower.domain.local
 
 import androidx.paging.PagingData
+import com.glacierpower.domain.model.LocationResultModel
 import com.glacierpower.domain.model.ResultsModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -19,6 +20,22 @@ class RickAndMortyLocalInteractor @Inject constructor(
         name: String?
     ): Flow<PagingData<ResultsModel>> =
         rickAndMortyLocalRepository.getAllCharactersFromDb(status, gender, name)
+
+    suspend fun insertLocationData(){
+        rickAndMortyLocalRepository.insertLocationData()
+    }
+
+    suspend fun getLocationFromDbById(id:Int): LocationResultModel{
+        return rickAndMortyLocalRepository.getLocationFromDbById(id)
+    }
+
+    suspend fun getAllLocationFromDb(
+        name:String?,
+        type:String?,
+        dimension:String?
+    ): Flow<PagingData<LocationResultModel>>{
+        return rickAndMortyLocalRepository.getAllLocationFromDb(name, type, dimension)
+    }
 
 
 }
