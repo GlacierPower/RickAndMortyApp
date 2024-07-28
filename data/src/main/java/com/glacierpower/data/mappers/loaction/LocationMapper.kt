@@ -1,7 +1,8 @@
-package com.glacierpower.data.mappers
+package com.glacierpower.data.mappers.loaction
 
 import com.glacierpower.common.response.LocationResponse
 import com.glacierpower.common.response.LocationResults
+import com.glacierpower.data.mappers.character.toModel
 import com.glacierpower.domain.model.LocationResponseModel
 import com.glacierpower.domain.model.LocationResultModel
 

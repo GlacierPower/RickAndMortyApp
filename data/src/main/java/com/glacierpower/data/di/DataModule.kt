@@ -2,8 +2,10 @@ package com.glacierpower.data.di
 
 import android.content.Context
 import com.glacierpower.data.remote.RickAndMortyService
+import com.glacierpower.data.repositoryImpl.RickAndMortyLocalRepositoryImpl
 import com.glacierpower.data.repositoryImpl.RickAndMortyRepositoryImpl
-import com.glacierpower.domain.RickAndMortyRepository
+import com.glacierpower.domain.local.RickAndMortyLocalRepository
+import com.glacierpower.domain.remote.RickAndMortyRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -25,6 +27,11 @@ abstract class DataModule {
     abstract fun bindRickAndMortyRepository(
         rickAndMortyRepositoryImpl: RickAndMortyRepositoryImpl
     ): RickAndMortyRepository
+
+    @Binds
+    abstract fun bindRickAndMortyLocalRepository(
+        rickAndMortyLocalRepositoryImpl: RickAndMortyLocalRepositoryImpl
+    ): RickAndMortyLocalRepository
 
     companion object {
 

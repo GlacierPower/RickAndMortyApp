@@ -11,6 +11,7 @@ import com.glacierpower.feature.databinding.FragmentFilterBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class FilterFragment : BottomSheetDialogFragment() {
     private var _viewBinding: FragmentFilterBinding? = null

@@ -15,6 +15,7 @@ import com.glacierpower.feature.episode.episodeDetails.adapter.EpisodeCharacterA
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import util.ExtensionFunction.showIf
 
 @AndroidEntryPoint
 class EpisodeDetails : Fragment(), EpisodeAdapterListener {
@@ -42,53 +43,53 @@ class EpisodeDetails : Fragment(), EpisodeAdapterListener {
 
     }
 
-    private fun loading(){
-        if (viewModel.state.value.isLoading){
-            viewBinding.episodeProgress.visibility = View.VISIBLE
-        }else{
-            viewBinding.episodeProgress.visibility = View.GONE
-        }
-    }
-
-    private fun navigateBack() {
-        viewBinding.arrowBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
-
-    private fun submitData() {
+    private fun loading() {
         lifecycleScope.launch {
-            viewModel.state.collectLatest { episodeDetailState ->
-                viewBinding.toolbarText.text = episodeDetailState.episodeDetail?.name
-                viewBinding.episodeDate.text = episodeDetailState.episodeDetail?.air_date
-                viewBinding.episode.text = episodeDetailState.episodeDetail?.episode
-                viewBinding.episodeName.text = episodeDetailState.episodeDetail?.name
-
+            viewModel.state.collectLatest {state->
+                viewBinding.episodeProgress.showIf(state.isLoading)
             }
         }
-    }
+}
 
-    private fun getCharacter() {
-        lifecycleScope.launch {
-            viewModel.state.collectLatest { data ->
-                episodeCharacterAdapter.differ.submitList(data.character)
-            }
+private fun navigateBack() {
+    viewBinding.arrowBack.setOnClickListener {
+        findNavController().popBackStack()
+    }
+}
+
+private fun submitData() {
+    lifecycleScope.launch {
+        viewModel.state.collectLatest { episodeDetailState ->
+            viewBinding.toolbarText.text = episodeDetailState.episodeDetail?.name
+            viewBinding.episodeDate.text = episodeDetailState.episodeDetail?.air_date
+            viewBinding.episode.text = episodeDetailState.episodeDetail?.episode
+            viewBinding.episodeName.text = episodeDetailState.episodeDetail?.name
 
         }
     }
+}
 
-    private fun setupRecyclerView() {
-        episodeCharacterAdapter = EpisodeCharacterAdapter(this)
-        viewBinding.rvCharacter.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            adapter = episodeCharacterAdapter
+private fun getCharacter() {
+    lifecycleScope.launch {
+        viewModel.state.collectLatest { data ->
+            episodeCharacterAdapter.differ.submitList(data.character)
         }
-    }
 
-    override fun getCharacterById(id: Int) {
-        val action = EpisodeDetailsDirections.actionEpisodeDetailsFragmentToCharacterDetails(id)
-        findNavController().navigate(action)
     }
+}
+
+private fun setupRecyclerView() {
+    episodeCharacterAdapter = EpisodeCharacterAdapter(this)
+    viewBinding.rvCharacter.apply {
+        layoutManager = LinearLayoutManager(requireContext())
+        setHasFixedSize(true)
+        adapter = episodeCharacterAdapter
+    }
+}
+
+override fun getCharacterById(id: Int) {
+    val action = EpisodeDetailsDirections.actionEpisodeDetailsFragmentToCharacterDetails(id)
+    findNavController().navigate(action)
+}
 
 }
