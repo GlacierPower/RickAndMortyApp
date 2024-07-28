@@ -10,9 +10,6 @@ import javax.inject.Inject
 
 class CharacterPagingSourceDB @Inject constructor(
     private val rickAndMortyDao: RickAndMortyDao,
-    status: String?,
-    gender: String?,
-    name: String?
 ) : PagingSource<Int, ResultsModel>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ResultsModel> {
         val pageNumber = params.key ?: STARTING_PAGE
