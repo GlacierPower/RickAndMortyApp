@@ -1,6 +1,7 @@
 package com.glacierpower.domain.local
 
 import androidx.paging.PagingData
+import com.glacierpower.domain.model.EpisodeModel
 import com.glacierpower.domain.model.LocationResultModel
 import com.glacierpower.domain.model.ResultsModel
 import kotlinx.coroutines.flow.Flow
@@ -26,6 +27,15 @@ interface RickAndMortyLocalRepository {
         type:String?,
         dimension:String?
     ): Flow<PagingData<LocationResultModel>>
+
+    suspend fun insertEpisodeData()
+
+    suspend fun getEpisodeFromDbById(id:Int): EpisodeModel
+
+    suspend fun getAllEpisodeFromDb(
+        name:String?,
+        episode:String?
+    ): Flow<PagingData<EpisodeModel>>
 
 
 }

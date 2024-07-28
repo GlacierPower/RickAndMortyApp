@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.glacierpower.data.local.entity.CharacterEntity
+import com.glacierpower.data.local.entity.EpisodeEntity
 import com.glacierpower.data.local.entity.LocationEntity
 
 @Dao
@@ -26,5 +27,14 @@ interface RickAndMortyDao {
 
     @Query("SELECT * FROM locationEntity")
     suspend fun getAllLocation(): List<LocationEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllEpisode(episode: List<EpisodeEntity>)
+
+    @Query("SELECT * FROM episodeEntity WHERE id = :episodeId")
+    suspend fun getEpisodeById(episodeId: Int): EpisodeEntity?
+
+    @Query("SELECT * FROM episodeEntity")
+    suspend fun getAllEpisode(): List<EpisodeEntity>
 
 }

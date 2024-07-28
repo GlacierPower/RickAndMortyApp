@@ -1,4 +1,4 @@
-package com.glacierpower.data.paging
+package com.glacierpower.data.paging.location
 
 import android.net.Uri
 import androidx.paging.PagingSource

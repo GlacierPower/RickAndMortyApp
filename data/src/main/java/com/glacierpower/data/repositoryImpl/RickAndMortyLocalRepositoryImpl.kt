@@ -6,12 +6,16 @@ import androidx.paging.PagingData
 import com.glacierpower.data.local.dao.RickAndMortyDao
 import com.glacierpower.data.mappers.character.toEntity
 import com.glacierpower.data.mappers.character.toModel
+import com.glacierpower.data.mappers.episode.toEntity
+import com.glacierpower.data.mappers.episode.toModel
 import com.glacierpower.data.mappers.loaction.toEntity
 import com.glacierpower.data.mappers.loaction.toModel
 import com.glacierpower.data.paging.charcter.CharacterPagingSourceDB
+import com.glacierpower.data.paging.episode.EpisodePagingSourceDB
 import com.glacierpower.data.paging.location.LocationPagingSourceDB
 import com.glacierpower.data.remote.RickAndMortyService
 import com.glacierpower.domain.local.RickAndMortyLocalRepository
+import com.glacierpower.domain.model.EpisodeModel
 import com.glacierpower.domain.model.LocationResultModel
 import com.glacierpower.domain.model.ResultsModel
 import kotlinx.coroutines.Dispatchers
@@ -77,6 +81,35 @@ class RickAndMortyLocalRepositoryImpl @Inject constructor(
                 config = PagingConfig(pageSize = 25),
                 pagingSourceFactory = {
                     LocationPagingSourceDB(
+                        rickAndMortyDao
+                    )
+                }
+            )
+        }.flow
+    }
+
+    override suspend fun insertEpisodeData() {
+        val response = rickAndMortyService.getAllEpisode()
+        return withContext(Dispatchers.IO) {
+            rickAndMortyDao.insertAllEpisode(response.results.map { it.toEntity() })
+        }
+    }
+
+    override suspend fun getEpisodeFromDbById(id: Int): EpisodeModel {
+        return withContext(Dispatchers.IO) {
+            rickAndMortyDao.getEpisodeById(id)!!.toModel()
+        }
+    }
+
+    override suspend fun getAllEpisodeFromDb(
+        name: String?,
+        episode: String?
+    ): Flow<PagingData<EpisodeModel>> {
+        return withContext(Dispatchers.IO) {
+            Pager(
+                config = PagingConfig(pageSize = 25),
+                pagingSourceFactory = {
+                    EpisodePagingSourceDB(
                         rickAndMortyDao
                     )
                 }

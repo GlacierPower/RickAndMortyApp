@@ -17,6 +17,6 @@ fun EpisodeResponse.toModel(): EpisodeResponseModel {
 
 fun EpisodeResult.toModel(): EpisodeModel {
     return EpisodeModel(
-        id, name, air_date, characters, url, episode, created
+        id, name, air_date, episode, characters, url, created
     )
 }

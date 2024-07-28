@@ -7,8 +7,8 @@ import com.glacierpower.data.mappers.character.toModel
 import com.glacierpower.data.mappers.episode.toModel
 import com.glacierpower.data.mappers.loaction.toModel
 import com.glacierpower.data.paging.charcter.CharactersPagingSource
-import com.glacierpower.data.paging.EpisodeDataSource
-import com.glacierpower.data.paging.LocationPagingSource
+import com.glacierpower.data.paging.episode.EpisodeDataSource
+import com.glacierpower.data.paging.location.LocationPagingSource
 import com.glacierpower.data.remote.RickAndMortyService
 import com.glacierpower.domain.model.EpisodeModel
 import com.glacierpower.domain.model.LocationResultModel
