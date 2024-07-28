@@ -4,7 +4,7 @@ import android.net.http.HttpException
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.glacierpower.domain.RickAndMortyInteractor
+import com.glacierpower.domain.remote.RickAndMortyInteractor
 import com.glacierpower.domain.model.ResultsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async

@@ -1,4 +1,4 @@
-package com.glacierpower.domain
+package com.glacierpower.domain.remote
 
 import androidx.paging.PagingData
 import com.glacierpower.domain.model.EpisodeModel

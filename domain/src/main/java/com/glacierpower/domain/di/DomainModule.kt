@@ -1,7 +1,9 @@
 package com.glacierpower.domain.di
 
-import com.glacierpower.domain.RickAndMortyInteractor
-import com.glacierpower.domain.RickAndMortyRepository
+import com.glacierpower.domain.local.RickAndMortyLocalInteractor
+import com.glacierpower.domain.local.RickAndMortyLocalRepository
+import com.glacierpower.domain.remote.RickAndMortyInteractor
+import com.glacierpower.domain.remote.RickAndMortyRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,5 +16,10 @@ class DomainModule {
     @Provides
     fun provideRickAndMortyInteractor(
         rickAndMortyRepository: RickAndMortyRepository
-    )= RickAndMortyInteractor(rickAndMortyRepository)
+    ) = RickAndMortyInteractor(rickAndMortyRepository)
+
+    @Provides
+    fun provideRickAndMortyLocalInteractor(
+        rickAndMortyLocalRepository: RickAndMortyLocalRepository
+    ) = RickAndMortyLocalInteractor(rickAndMortyLocalRepository)
 }

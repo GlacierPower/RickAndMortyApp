@@ -1,4 +1,4 @@
-package com.glacierpower.data.mappers
+package com.glacierpower.data.mappers.character
 
 import com.glacierpower.common.response.CharacterData
 import com.glacierpower.common.response.CharacterResponse

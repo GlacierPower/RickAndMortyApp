@@ -4,15 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.glacierpower.data.local.entity.CharacterEntity
 import com.glacierpower.data.local.entity.EpisodeEntity
 import com.glacierpower.data.local.entity.LocationEntity
 
 @Database(
     entities = [CharacterEntity::class,LocationEntity::class,EpisodeEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
+@TypeConverters(Converter::class)
 abstract class RickAndMortyDataBase():RoomDatabase() {
 
     abstract fun getDao() : RickAndMortyDao

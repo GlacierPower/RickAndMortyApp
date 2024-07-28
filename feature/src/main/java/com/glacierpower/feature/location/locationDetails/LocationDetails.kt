@@ -15,6 +15,7 @@ import com.glacierpower.feature.episode.episodeDetails.adapter.EpisodeCharacterA
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import util.ExtensionFunction.showIf
 
 @AndroidEntryPoint
 class LocationDetails : Fragment(), EpisodeAdapterListener {
@@ -44,11 +45,11 @@ class LocationDetails : Fragment(), EpisodeAdapterListener {
         loading()
     }
 
-    private fun loading(){
-        if (viewModel.state.value.isLoading){
-            viewBinding.locationProgress.visibility = View.GONE
-        }else{
-            viewBinding.locationProgress.visibility = View.VISIBLE
+    private fun loading() {
+        lifecycleScope.launch {
+            viewModel.state.collectLatest {state->
+                viewBinding.locationProgress.showIf(state.isLoading)
+            }
         }
     }
 

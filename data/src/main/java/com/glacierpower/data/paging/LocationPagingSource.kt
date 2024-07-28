@@ -3,7 +3,7 @@ package com.glacierpower.data.paging
 import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.glacierpower.data.mappers.toModel
+import com.glacierpower.data.mappers.loaction.toModel
 import com.glacierpower.data.remote.RickAndMortyService
 import com.glacierpower.domain.model.LocationResultModel
 import javax.inject.Inject

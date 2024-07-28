@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.glacierpower.domain.RickAndMortyInteractor
+import com.glacierpower.domain.remote.RickAndMortyInteractor
 import com.glacierpower.domain.model.LocationResultModel
 import com.glacierpower.feature.location.location.state.LocationState
 import dagger.hilt.android.lifecycle.HiltViewModel
