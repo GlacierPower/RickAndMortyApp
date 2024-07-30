@@ -31,25 +31,32 @@ class CharacterViewModel @Inject constructor(
     private val _state = MutableStateFlow(CharacterState())
     val state: StateFlow<CharacterState> get() = _state
 
-    private val name = savedStateHandle.get<String>("name").toString()
-    private val gender = savedStateHandle.get<String>("gender").toString()
-    private val status = savedStateHandle.get<String>("status").toString()
+    private val name = savedStateHandle.get<String?>("name").toString()
+    private val gender = savedStateHandle.get<String?>("gender").toString()
+    private val status = savedStateHandle.get<String?>("status").toString()
+
+    private val nameDB = savedStateHandle.get<String?>("nameDB")
+    private val genderDB = savedStateHandle.get<String?>("genderDB")
+    private val statusDB = savedStateHandle.get<String?>("statusDB")
 
     private val isOnline = connectivityManagerRepository.isConnected
 
     init {
+        Log.i("NameDB", "$nameDB")
+        Log.i("NameDB", "$genderDB")
+        Log.i("NameDB", "$statusDB")
         insertCharacterData()
         viewModelScope.launch {
             isOnline.collectLatest { online ->
                 if (online) {
-                    getCharacters(status, gender, name).collectLatest {
+                    getCharacters(name = name, status = status, gender = gender).collectLatest {
                         _state.value = _state.value.copy(
                             characters = it
                         )
 
                     }
                 } else {
-                    getCharactersFromDb(status, gender, name).collectLatest {
+                    getCharactersFromDb().collectLatest {
                         _state.value = _state.value.copy(
                             characters = it
                         )
@@ -63,15 +70,12 @@ class CharacterViewModel @Inject constructor(
     }
 
     private suspend fun getCharactersFromDb(
-        status: String?,
-        gender: String?,
-        name: String?
     ): Flow<PagingData<ResultsModel>> {
         Log.i("Fetch Data", "ViewModel")
         return rickAndMortyLocalInteractor.getAllCharactersFromDb(
-            status = status,
-            gender = gender,
-            name,
+            name = nameDB,
+            gender = genderDB,
+            status = statusDB,
         ).cachedIn(viewModelScope)
 
     }
@@ -92,7 +96,7 @@ class CharacterViewModel @Inject constructor(
         return rickAndMortyInteractor.getCharactersData(
             status = status,
             gender = gender,
-            name,
+            name = name,
         ).cachedIn(viewModelScope)
 
 

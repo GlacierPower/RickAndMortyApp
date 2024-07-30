@@ -30,6 +30,9 @@ class EpisodeViewModel @Inject constructor(
     private val name = savedStateHandle.get<String>("name").toString()
     private val episode = savedStateHandle.get<String>("episode").toString()
 
+    private val nameDB = savedStateHandle.get<String>("nameDB")
+    private val episodeDB = savedStateHandle.get<String>("episodeDB")
+
     private val _state = MutableStateFlow(EpisodeState())
     val state: StateFlow<EpisodeState> get() = _state
 
@@ -46,7 +49,7 @@ class EpisodeViewModel @Inject constructor(
                         )
                     }
                 }
-                getAllEpisodeFromDB(name, episode).collectLatest {
+                getAllEpisodeFromDB().collectLatest {
                     _state.value = _state.value.copy(
                         episodeList = it
                     )
@@ -62,10 +65,9 @@ class EpisodeViewModel @Inject constructor(
     }
 
     private suspend fun getAllEpisodeFromDB(
-        name: String,
-        episode: String
     ): Flow<PagingData<EpisodeModel>> {
-        return rickAndMortyLocalInteractor.getAllEpisodeFromDb(name, episode).cachedIn(viewModelScope)
+        return rickAndMortyLocalInteractor.getAllEpisodeFromDb(name = nameDB, episode = episodeDB)
+            .cachedIn(viewModelScope)
     }
 
     private suspend fun getAllEpisode(

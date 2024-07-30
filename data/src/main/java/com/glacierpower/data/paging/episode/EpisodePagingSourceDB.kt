@@ -10,12 +10,14 @@ import javax.inject.Inject
 
 class EpisodePagingSourceDB @Inject constructor(
     private val rickAndMortyDao: RickAndMortyDao,
+    private val name:String? = null,
+    private val episode:String? = null,
 ) : PagingSource<Int, EpisodeModel>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodeModel> {
         val pageNumber = params.key ?: Constants.STARTING_PAGE
 
         return try {
-            val response = rickAndMortyDao.getAllEpisode()
+            val response = rickAndMortyDao.getAllEpisode(name = name, episode = episode)
             LoadResult.Page(
                 data = response.map { it.toModel() },
                 prevKey = if (pageNumber == Constants.STARTING_PAGE) null else pageNumber - 1,

@@ -10,31 +10,31 @@ interface RickAndMortyLocalRepository {
 
     suspend fun insertCharacterData()
 
-    suspend fun getCharacterFromDbById(id:Int): ResultsModel
+    suspend fun getCharacterFromDbById(id: Int): ResultsModel
 
     suspend fun getAllCharactersFromDb(
-        status: String?,
-        gender: String?,
-        name: String?
+        name: String? = null,
+        gender: String? = null,
+        status: String? = null,
     ): Flow<PagingData<ResultsModel>>
 
     suspend fun insertLocationData()
 
-    suspend fun getLocationFromDbById(id:Int): LocationResultModel
+    suspend fun getLocationFromDbById(id: Int): LocationResultModel
 
     suspend fun getAllLocationFromDb(
-        name:String?,
-        type:String?,
-        dimension:String?
+        name: String? = null,
+        type: String? = null,
+        dimension: String? = null
     ): Flow<PagingData<LocationResultModel>>
 
     suspend fun insertEpisodeData()
 
-    suspend fun getEpisodeFromDbById(id:Int): EpisodeModel
+    suspend fun getEpisodeFromDbById(id: Int): EpisodeModel
 
     suspend fun getAllEpisodeFromDb(
-        name:String?,
-        episode:String?
+        name: String? = null,
+        episode: String? = null
     ): Flow<PagingData<EpisodeModel>>
 
 
