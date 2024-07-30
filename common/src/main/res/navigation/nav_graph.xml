@@ -24,6 +24,19 @@
         <argument
             android:name="name"
             android:defaultValue=""
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="nameDB"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="statusDB"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="genderDB"
+            app:nullable="true"
             app:argType="string" />
         <action
             android:id="@+id/action_charactersFragment_to_characterDetails"
@@ -67,7 +80,16 @@
             android:defaultValue="" />
         <argument
             android:name="episode"
+            app:argType="string"
             android:defaultValue="" />
+        <argument
+            android:name="nameDB"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="episodeDB"
+            app:argType="string"
+            app:nullable="true" />
         <action
             android:id="@+id/action_episodeFragment_to_episodeDetailsFragment"
             app:destination="@id/episodeDetailsFragment" />
@@ -121,6 +143,19 @@
         <argument android:name="locationDimension"
             app:argType="string"
             android:defaultValue=""/>
+
+        <argument
+            android:name="locationNameDB"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument
+            android:name="locationTypeDB"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument android:name="locationDimensionDB"
+            app:argType="string"
+            app:nullable="true"/>
+
         <action
             android:id="@+id/action_locationFragment_to_locationDetailsFragment"
             app:destination="@id/locationDetailsFragment" />

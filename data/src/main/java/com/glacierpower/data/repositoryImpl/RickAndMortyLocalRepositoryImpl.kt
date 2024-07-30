@@ -41,16 +41,16 @@ class RickAndMortyLocalRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getAllCharactersFromDb(
-        status: String?,
+        name: String?,
         gender: String?,
-        name: String?
+        status: String?,
     ): Flow<PagingData<ResultsModel>> {
         return withContext(Dispatchers.IO) {
             Pager(
                 config = PagingConfig(pageSize = 25),
                 pagingSourceFactory = {
                     CharacterPagingSourceDB(
-                        rickAndMortyDao
+                        rickAndMortyDao, name = name, status = status, gender = gender
                     )
                 }
             ).flow
@@ -81,7 +81,7 @@ class RickAndMortyLocalRepositoryImpl @Inject constructor(
                 config = PagingConfig(pageSize = 25),
                 pagingSourceFactory = {
                     LocationPagingSourceDB(
-                        rickAndMortyDao
+                        rickAndMortyDao, name = name, type = type, dimension = dimension
                     )
                 }
             )
@@ -110,7 +110,7 @@ class RickAndMortyLocalRepositoryImpl @Inject constructor(
                 config = PagingConfig(pageSize = 25),
                 pagingSourceFactory = {
                     EpisodePagingSourceDB(
-                        rickAndMortyDao
+                        rickAndMortyDao, name = name, episode = episode
                     )
                 }
             )

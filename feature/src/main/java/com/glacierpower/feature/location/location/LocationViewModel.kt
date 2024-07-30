@@ -31,6 +31,10 @@ class LocationViewModel @Inject constructor(
     private val locationType = savedStateHandle.get<String>("locationType").toString()
     private val locationDimension = savedStateHandle.get<String>("locationDimension").toString()
 
+    private val locationNameDB = savedStateHandle.get<String>("locationNameDB")
+    private val locationTypeDB = savedStateHandle.get<String>("locationTypeDB")
+    private val locationDimensionDB = savedStateHandle.get<String>("locationDimensionDB")
+
     private var _state = MutableStateFlow(LocationState())
     val state: StateFlow<LocationState> get() = _state
 
@@ -48,7 +52,7 @@ class LocationViewModel @Inject constructor(
                     }
 
                 } else {
-                    getLocationFromDB(locationName, locationType, locationDimension).collect {
+                    getLocationFromDB().collect {
                         _state.value = _state.value.copy(
                             locationList = it
                         )
@@ -64,12 +68,15 @@ class LocationViewModel @Inject constructor(
     }
 
     private suspend fun getLocationFromDB(
-        name: String,
-        type: String,
-        dimension: String
+
     ): Flow<PagingData<LocationResultModel>> {
-        return rickAndMortyLocalInteractor.getAllLocationFromDb(name, type, dimension).cachedIn(
-            viewModelScope)
+        return rickAndMortyLocalInteractor.getAllLocationFromDb(
+            name = locationNameDB,
+            type = locationTypeDB,
+            dimension = locationDimensionDB
+        ).cachedIn(
+            viewModelScope
+        )
     }
 
     private suspend fun getAllLocation(

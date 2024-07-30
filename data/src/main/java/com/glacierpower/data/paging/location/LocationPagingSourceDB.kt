@@ -10,12 +10,16 @@ import javax.inject.Inject
 
 class LocationPagingSourceDB @Inject constructor(
     private val rickAndMortyDao: RickAndMortyDao,
+    private val type: String? = null,
+    private val dimension: String? = null,
+    private val name: String? = null
 ) : PagingSource<Int, LocationResultModel>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, LocationResultModel> {
         val pageNumber = params.key ?: Constants.STARTING_PAGE
 
         return try {
-            val response = rickAndMortyDao.getAllLocation()
+            val response =
+                rickAndMortyDao.getAllLocation(type = type, dimension = dimension, name = name)
             LoadResult.Page(
                 data = response.map { it.toModel() },
                 prevKey = if (pageNumber == Constants.STARTING_PAGE) null else pageNumber - 1,

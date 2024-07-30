@@ -16,11 +16,12 @@ class RickAndMortyLocalInteractor @Inject constructor(
         rickAndMortyLocalRepository.getCharacterFromDbById(id)
 
     suspend fun getAllCharactersFromDb(
-        status: String?,
-        gender: String?,
-        name: String?
+        name: String? = null,
+        gender: String? = null,
+        status: String? = null,
+
     ): Flow<PagingData<ResultsModel>> =
-        rickAndMortyLocalRepository.getAllCharactersFromDb(status, gender, name)
+        rickAndMortyLocalRepository.getAllCharactersFromDb(name = name, gender = gender, status = status)
 
     suspend fun insertLocationData() {
         rickAndMortyLocalRepository.insertLocationData()
@@ -31,11 +32,11 @@ class RickAndMortyLocalInteractor @Inject constructor(
     }
 
     suspend fun getAllLocationFromDb(
-        name: String?,
-        type: String?,
-        dimension: String?
+        name: String? = null,
+        type: String? = null,
+        dimension: String? = null
     ): Flow<PagingData<LocationResultModel>> {
-        return rickAndMortyLocalRepository.getAllLocationFromDb(name, type, dimension)
+        return rickAndMortyLocalRepository.getAllLocationFromDb(name =name, type = type, dimension = dimension)
     }
 
     suspend fun insertEpisodeData() {
@@ -47,10 +48,10 @@ class RickAndMortyLocalInteractor @Inject constructor(
     }
 
     suspend fun getAllEpisodeFromDb(
-        name: String?,
-        episode: String?
+        name: String? = null,
+        episode: String? = null
     ): Flow<PagingData<EpisodeModel>> {
-        return rickAndMortyLocalRepository.getAllEpisodeFromDb(name, episode)
+        return rickAndMortyLocalRepository.getAllEpisodeFromDb(name = name, episode = episode)
     }
 
 }
