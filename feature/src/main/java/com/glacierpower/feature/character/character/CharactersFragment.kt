@@ -46,7 +46,7 @@ class CharactersFragment() : Fragment(), CharacterListener {
         navigateToFilter()
 
         viewBinding.fragmentCharacterLayout.setOnRefreshListener {
-            getCharacter()
+            characterAdapter.refresh()
             viewBinding.fragmentCharacterLayout.isRefreshing = false
         }
 
