@@ -93,6 +93,16 @@ class EpisodeFilter(
 
                     }
 
+                    viewBinding.btnApply.setOnClickListener {
+                        val action =
+                            EpisodeFilterDirections.actionEpisodeFilterToEpisodeFragment(
+                                nameDB,
+                                episodeDB
+                            )
+                        findNavController().navigate(action)
+
+                    }
+
                     viewBinding.clear.setOnClickListener {
                         viewBinding.rgSearch.clearCheck()
                         nameDB = null
@@ -102,8 +112,6 @@ class EpisodeFilter(
             }
         }
 
-
     }
-
 
 }
