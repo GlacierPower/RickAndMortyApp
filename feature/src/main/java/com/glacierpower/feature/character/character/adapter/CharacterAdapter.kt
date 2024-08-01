@@ -1,9 +1,9 @@
 package com.glacierpower.feature.character.character.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +11,9 @@ import com.glacierpower.domain.model.ResultsModel
 import com.glacierpower.feature.databinding.CharacterItemBinding
 import util.ExtensionFunction.loadImage
 
-class CharacterAdapter(private val characterListener: CharacterListener) : PagingDataAdapter<ResultsModel,
-        CharacterAdapter.CharacterViewHolder>(diffUtilCallback) {
+class CharacterAdapter(private val characterListener: CharacterListener) :
+    PagingDataAdapter<ResultsModel,
+            CharacterAdapter.CharacterViewHolder>(diffUtilCallback) {
 
     class CharacterViewHolder(
         val binding: CharacterItemBinding
@@ -31,12 +32,14 @@ class CharacterAdapter(private val characterListener: CharacterListener) : Pagin
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val character = getItem(position)
         holder.binding.characterName.text = "${character?.name}"
-        holder.binding.characterStatus.text = "Status: ${character?.status}"
         character?.image?.let { holder.binding.characterImage.loadImage(it) }
-        holder.itemView.setOnClickListener {
-            characterListener.getCharacterById(character?.id!!)
+        if (character!!.id != 0) {
+            holder.binding.characterStatus.text = "Status: ${character?.status}"
+            holder.itemView.setOnClickListener {
+                characterListener.getCharacterById(character?.id!!)
+
+            }
         }
-        Log.i("BindViewHolder","Success")
 
     }
 
@@ -50,6 +53,11 @@ class CharacterAdapter(private val characterListener: CharacterListener) : Pagin
                 return oldItem == newItem
             }
         }
+    }
+
+    suspend fun submitCharacterList(character: List<ResultsModel>) {
+        val pagingData: PagingData<ResultsModel> = PagingData.from(character)
+        submitData(pagingData)
     }
 
 }

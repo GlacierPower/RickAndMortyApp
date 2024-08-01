@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class CharactersFragment() : Fragment(), CharacterListener {
+class CharactersFragment : Fragment(), CharacterListener {
 
     private val viewModel: CharacterViewModel by viewModels()
     private var _viewBinding: FragmentCharactersBinding? = null
@@ -45,11 +45,6 @@ class CharactersFragment() : Fragment(), CharacterListener {
         loadStateAdapter()
         navigateToFilter()
 
-        viewBinding.fragmentCharacterLayout.setOnRefreshListener {
-            characterAdapter.refresh()
-            viewBinding.fragmentCharacterLayout.isRefreshing = false
-        }
-
     }
 
     private fun setupRecyclerView() {
@@ -65,7 +60,6 @@ class CharactersFragment() : Fragment(), CharacterListener {
         lifecycleScope.launch {
             viewModel.state.collectLatest { data ->
                 characterAdapter.submitData(data.characters!!)
-
             }
 
         }
@@ -86,7 +80,8 @@ class CharactersFragment() : Fragment(), CharacterListener {
             }
         }
     }
-    private fun navigateToFilter(){
+
+    private fun navigateToFilter() {
         viewBinding.filterButton.setOnClickListener {
             val action = CharactersFragmentDirections.actionCharactersFragmentToFilterFragment()
             findNavController(it).navigate(action)

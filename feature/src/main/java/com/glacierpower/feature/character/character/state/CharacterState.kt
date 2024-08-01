@@ -10,4 +10,5 @@ data class CharacterState(
     val queryCharacterName: MutableLiveData<String> = MutableLiveData(""),
     val page: Int = 1,
     val isFilter: Boolean = false,
+    val isError:Boolean = false
 )

@@ -9,21 +9,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.glacierpower.feature.character.character.adapter.CharacterAdapter
+import com.glacierpower.feature.character.character.adapter.CharacterListener
 import com.glacierpower.feature.databinding.FragmentEpisodeDetailsBinding
-import com.glacierpower.feature.episode.episodeDetails.adapter.EpisodeAdapterListener
-import com.glacierpower.feature.episode.episodeDetails.adapter.EpisodeCharacterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import util.ExtensionFunction.showIf
 
 @AndroidEntryPoint
-class EpisodeDetails : Fragment(), EpisodeAdapterListener {
+class EpisodeDetails : Fragment(), CharacterListener {
 
     private var _viewBinding: FragmentEpisodeDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
     private val viewModel: EpisodeDetailsViewModel by viewModels()
-    private lateinit var episodeCharacterAdapter: EpisodeCharacterAdapter
+    private lateinit var characterAdapter: CharacterAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,18 +72,18 @@ private fun submitData() {
 private fun getCharacter() {
     lifecycleScope.launch {
         viewModel.state.collectLatest { data ->
-            episodeCharacterAdapter.differ.submitList(data.character)
+            data.character?.let { characterAdapter.submitCharacterList(it) }
         }
 
     }
 }
 
 private fun setupRecyclerView() {
-    episodeCharacterAdapter = EpisodeCharacterAdapter(this)
+    characterAdapter = CharacterAdapter(this)
     viewBinding.rvCharacter.apply {
         layoutManager = LinearLayoutManager(requireContext())
         setHasFixedSize(true)
-        adapter = episodeCharacterAdapter
+        adapter = characterAdapter
     }
 }
 
