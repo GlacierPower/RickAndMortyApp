@@ -64,8 +64,8 @@ class CharacterDetailsViewModel @Inject constructor(
                     episode
                 }
                 episodes.add(episodeModel.await())
-            }
 
+            }
             _state.value = _state.value.copy(
                 episodeList = episodes,
                 isLoading = false
