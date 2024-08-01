@@ -57,14 +57,14 @@ class CharacterDetailsViewModel @Inject constructor(
             val episodeList = _state.value.character!!.episode
             val episodes: MutableList<EpisodeModel> = mutableListOf()
             _state.value = _state.value.copy(isLoading = true)
-//            episodeList.forEach { episodeUrl ->
-//                val episodeModel = async {
-//                    val episodeId = (episodeUrl.split("/"))[5]
-//                    val episode = rickAndMortyInteractor.getEpisodeById(episodeId.toInt())
-//                    episode
-//                }
-//                episodes.add(episodeModel.await())
-//            }
+            episodeList?.forEach { episodeUrl ->
+                val episodeModel = async {
+                    val episodeId = (episodeUrl.split("/"))[5]
+                    val episode = rickAndMortyInteractor.getEpisodeById(episodeId.toInt())
+                    episode
+                }
+                episodes.add(episodeModel.await())
+            }
 
             _state.value = _state.value.copy(
                 episodeList = episodes,
