@@ -40,6 +40,7 @@ class Location : Fragment(), LocationListener {
         getAllLocation()
         loadStateAdapter()
         navigateToLocationFilter()
+
     }
 
     private fun setupRecyclerView() {
@@ -58,6 +59,7 @@ class Location : Fragment(), LocationListener {
             }
         }
     }
+
 
     private fun loadStateAdapter() {
         lifecycleScope.launch {

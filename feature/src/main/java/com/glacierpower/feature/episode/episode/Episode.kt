@@ -42,6 +42,7 @@ class Episode : Fragment(), EpisodeListener {
         getEpisode()
         loadStateAdapter()
         navigateToFilter()
+
     }
 
     private fun setupRecyclerView() {
@@ -52,6 +53,8 @@ class Episode : Fragment(), EpisodeListener {
             adapter = episodeAdapter
         }
     }
+
+
 
     private fun getEpisode() {
         lifecycleScope.launch {

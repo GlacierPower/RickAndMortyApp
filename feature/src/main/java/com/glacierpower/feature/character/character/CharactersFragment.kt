@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.glacierpower.data.utils.LoadStatePaging
 import com.glacierpower.feature.character.character.adapter.CharacterAdapter
 import com.glacierpower.feature.character.character.adapter.CharacterListener
@@ -20,7 +21,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class CharactersFragment : Fragment(), CharacterListener {
+class CharactersFragment : Fragment(), CharacterListener, SwipeRefreshLayout.OnRefreshListener {
 
     private val viewModel: CharacterViewModel by viewModels()
     private var _viewBinding: FragmentCharactersBinding? = null
@@ -44,6 +45,7 @@ class CharactersFragment : Fragment(), CharacterListener {
         getCharacter()
         loadStateAdapter()
         navigateToFilter()
+        swipeToRefresh()
 
     }
 
@@ -53,6 +55,14 @@ class CharactersFragment : Fragment(), CharacterListener {
             this.layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             adapter = characterAdapter
+        }
+    }
+
+    private fun swipeToRefresh() {
+        viewBinding.fragmentCharacterLayout.setOnRefreshListener {
+            getCharacter()
+            viewBinding.fragmentCharacterLayout.isRefreshing = false
+
         }
     }
 
@@ -93,6 +103,10 @@ class CharactersFragment : Fragment(), CharacterListener {
         val actionToDetails =
             CharactersFragmentDirections.actionCharactersFragmentToCharacterDetails(id)
         findNavController(requireView()).navigate(actionToDetails)
+    }
+
+    override fun onRefresh() {
+        getCharacter()
     }
 
 }
