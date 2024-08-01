@@ -14,28 +14,28 @@ data class InfoModel(
     )
 
 data class ResultsModel(
-    val id: Int,
-    val name: String,
-    val status: String,
-    val species: String,
-    val type: String,
-    val gender: String,
-    val origin: OriginModel,
-    val location: LocationModel,
-    val image: String,
-    val episode: List<String>,
-    val url: String,
-    val created: String
+    val id: Int? = 0,
+    val name: String?="",
+    val status: String?="",
+    val species: String?="",
+    val type: String?="",
+    val gender: String?="",
+    val origin: OriginModel? = OriginModel(),
+    val location: LocationModel?=LocationModel(),
+    val image: String?="",
+    val episode: List<String>? = listOf(),
+    val url: String?="",
+    val created: String?=""
 
 )
 
 data class OriginModel(
-    val name: String,
-    val url: String
+    val name: String?="",
+    val url: String?=""
 )
 
 data class LocationModel(
-    val name: String,
-    val url: String
+    val name: String?="",
+    val url: String?=""
 )
 

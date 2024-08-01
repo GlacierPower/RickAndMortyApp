@@ -4,12 +4,14 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.glacierpower.feature.R
 
 
 object ExtensionFunction {
     fun ImageView.loadImage(url: String, placeholder: Int? = null, error: Int? = null) {
         val glideRequest = Glide.with(this.context)
             .load(url)
+            .placeholder(R.drawable.placeholder)
 
         placeholder?.let {
             glideRequest.apply(RequestOptions().placeholder(it))

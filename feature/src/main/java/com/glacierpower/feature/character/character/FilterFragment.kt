@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.glacierpower.feature.R
@@ -27,6 +28,8 @@ class FilterFragment(
 ) : BottomSheetDialogFragment() {
     private var _viewBinding: FragmentFilterBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private val viewModel: CharacterViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -98,14 +101,14 @@ class FilterFragment(
                                 statusDB = null
                             )
                         findNavController().navigate(action)
+                        name = getString(R.string.empty_line)
+                        gender = getString(R.string.empty_line)
+                        status = getString(R.string.empty_line)
 
                     }
                     viewBinding.clear.setOnClickListener {
                         viewBinding.rgStatus.clearCheck()
                         viewBinding.rgGender.clearCheck()
-                        name = getString(R.string.empty_line)
-                        gender = getString(R.string.empty_line)
-                        status = getString(R.string.empty_line)
                     }
 
                 } else {

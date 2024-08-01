@@ -1,6 +1,5 @@
 package com.glacierpower.feature.character.character
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,34 +30,39 @@ class CharacterViewModel @Inject constructor(
     private val _state = MutableStateFlow(CharacterState())
     val state: StateFlow<CharacterState> get() = _state
 
-    private val name = savedStateHandle.get<String?>("name").toString()
-    private val gender = savedStateHandle.get<String?>("gender").toString()
-    private val status = savedStateHandle.get<String?>("status").toString()
 
-    private val nameDB = savedStateHandle.get<String?>("nameDB")
-    private val genderDB = savedStateHandle.get<String?>("genderDB")
-    private val statusDB = savedStateHandle.get<String?>("statusDB")
+    private var name = savedStateHandle.get<String?>("name").toString()
+    private var gender = savedStateHandle.get<String?>("gender").toString()
+    private var status = savedStateHandle.get<String?>("status").toString()
+
+    private var nameDB = savedStateHandle.get<String?>("nameDB")
+    private var genderDB = savedStateHandle.get<String?>("genderDB")
+    private var statusDB = savedStateHandle.get<String?>("statusDB")
 
     private val isOnline = connectivityManagerRepository.isConnected
 
     init {
-        Log.i("NameDB", "$nameDB")
-        Log.i("NameDB", "$genderDB")
-        Log.i("NameDB", "$statusDB")
         insertCharacterData()
+
         viewModelScope.launch {
             isOnline.collectLatest { online ->
                 if (online) {
-                    getCharacters(name = name, status = status, gender = gender).collectLatest {
+                    try {
+                        getCharacters().collectLatest {
+                            _state.value = _state.value.copy(
+                                characters = it
+                            )
+                        }
+                    }catch (e:Exception){
                         _state.value = _state.value.copy(
-                            characters = it
+                            isError = true
                         )
-
                     }
                 } else {
                     getCharactersFromDb().collectLatest {
                         _state.value = _state.value.copy(
-                            characters = it
+                            characters = it,
+                            isError = false
                         )
                     }
 
@@ -69,9 +73,10 @@ class CharacterViewModel @Inject constructor(
 
     }
 
+
+
     private suspend fun getCharactersFromDb(
     ): Flow<PagingData<ResultsModel>> {
-        Log.i("Fetch Data", "ViewModel")
         return rickAndMortyLocalInteractor.getAllCharactersFromDb(
             name = nameDB,
             gender = genderDB,
@@ -88,11 +93,7 @@ class CharacterViewModel @Inject constructor(
     }
 
     private suspend fun getCharacters(
-        status: String,
-        gender: String,
-        name: String
     ): Flow<PagingData<ResultsModel>> {
-        Log.i("Fetch Data", "ViewModel")
         return rickAndMortyInteractor.getCharactersData(
             status = status,
             gender = gender,

@@ -31,15 +31,14 @@
                 android:id="@+id/characterName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/character_name"
+                android:hint="@string/character_does_not_exist_in_cache"
                 android:layout_marginBottom="@dimen/marginBottomCharacterName"
                 />
 
             <TextView
                 android:id="@+id/characterStatus"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/status" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

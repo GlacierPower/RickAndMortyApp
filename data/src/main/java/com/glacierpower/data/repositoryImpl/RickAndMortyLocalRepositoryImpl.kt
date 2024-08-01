@@ -28,15 +28,16 @@ class RickAndMortyLocalRepositoryImpl @Inject constructor(
     private val rickAndMortyDao: RickAndMortyDao
 ) : RickAndMortyLocalRepository {
     override suspend fun insertCharacterData() {
-        val characterData = rickAndMortyService.getCharacter()
         return withContext(Dispatchers.IO) {
-            rickAndMortyDao.insertAllCharacter(characterData.results.map { it.toEntity() })
+                val characterData = rickAndMortyService.getCharacter()
+                rickAndMortyDao.insertAllCharacter(characterData.results.map { it.toEntity() })
+
         }
     }
 
     override suspend fun getCharacterFromDbById(id: Int): ResultsModel {
         return withContext(Dispatchers.IO) {
-            rickAndMortyDao.getCharacterById(id)!!.toModel()
+            rickAndMortyDao.getCharacterById(id)?.toModel() ?: ResultsModel()
         }
     }
 
