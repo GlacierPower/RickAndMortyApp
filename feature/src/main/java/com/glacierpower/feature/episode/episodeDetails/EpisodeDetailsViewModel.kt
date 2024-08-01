@@ -65,7 +65,7 @@ class EpisodeDetailsViewModel @Inject constructor(
                         val characterDeferred = async {
                             val id = (characterUrl.split("/"))[5].toInt()
                             val character =
-                                rickAndMortyInteractor.getCharacterById(id)
+                                rickAndMortyLocalInteractor.getCharacterFromDbById(id)
                             character
                         }
                         characterList.add(characterDeferred.await())
